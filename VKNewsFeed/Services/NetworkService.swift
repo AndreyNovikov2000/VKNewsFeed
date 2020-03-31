@@ -8,34 +8,57 @@
 
 import Foundation
 
-class NetworkService {
-   
+protocol Networking {
+    func request(path: String, params: [String: String], complition: @escaping (Data?, Error?) -> Void)
+}
+
+class NetworkService: Networking {
+    
     // MARK: - Private properties
     private let authService: AuthService
+    
     
     // MARK: - Init
     init(authService: AuthService = AppDelegate.shared().authService) {
         self.authService = authService
     }
     
+    
     // MARK - Public properties
-    func getFeed() {
-        
+    func request(path: String, params: [String : String], complition: @escaping (Data?, Error?) -> Void) {
         guard let token = authService.token else { return }
         
-        var components = URLComponents()
-        
-        let methods = ["filters" : "post, photo"]
-        var allParams = methods
-        allParams["v"] = API.version
+        var allParams = params
         allParams["access_token"] = token
+        allParams["v"] = API.version
         
+        guard let url = self.url(from: path, params: allParams) else { return }
+        
+        let request = URLRequest(url: url)
+        let task = setupDataTask(from: request, complition: complition)
+        task.resume()
+    }
+    
+    
+    // MARK: Private methods
+    private func setupDataTask(from request: URLRequest, complition: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
+        return URLSession.shared.dataTask(with: request) { (data, _, error) in
+            DispatchQueue.main.async {
+                complition(data, error)
+            }
+        }
+    }
+    
+    private func url(from path: String, params: [String: String]) -> URL? {
+        var components = URLComponents()
         
         components.scheme = API.scheme
         components.host = API.host
-        components.path = API.path
-        components.queryItems = allParams.map({ URLQueryItem(name: $0, value: $1) })
+        components.path = path
+        components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
+        
+        return components.url
     }
 }
 
-//https://api.vk.com/method/users.get?user_ids=210700286&fields=bdate&access_token=533bacf01e11f55b536a565b57531ac114461ae8736d6506a3&v=5.103
+
