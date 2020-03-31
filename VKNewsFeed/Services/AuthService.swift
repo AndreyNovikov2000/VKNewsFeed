@@ -1,9 +1,9 @@
 //
-//  AU.swift
+//  AuthService.swift
 //  VKNewsFeed
 //
 //  Created by Andrey Novikov on 3/31/20.
-//  Copyright © 2020 Алексей Пархоменко. All rights reserved.
+//  Copyright © 2020 Andrey Novikov. All rights reserved.
 //
 
 import Foundation
@@ -20,15 +20,14 @@ final class AuthService: NSObject {
     // MARK: - External properties
     weak var delegate: AuthServiceDelegate?
     
-    
-    // MARK: - Private properties
-    private let appId = "7383905"
-    private let vkSdk: VKSdk
-    
     // MARK: - Public properties
     var token: String? {
         return VKSdk.accessToken()?.accessToken
     }
+    
+    // MARK: - Private properties
+    private let appId = "7383905"
+    private let vkSdk: VKSdk
     
     // MARK: - Int
     override init() {

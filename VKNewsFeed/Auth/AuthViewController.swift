@@ -2,8 +2,8 @@
 //  AuthViewController.swift
 //  VKNewsFeed
 //
-//  Created by Алексей Пархоменко on 22/02/2019.
-//  Copyright © 2019 Алексей Пархоменко. All rights reserved.
+//  Created by Andrey Novikov on 3/31/20.
+//  Copyright © 2020 Andrey Novikov. All rights reserved.
 //
 
 import UIKit
