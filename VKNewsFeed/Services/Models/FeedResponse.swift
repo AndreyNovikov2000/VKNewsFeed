@@ -20,9 +20,11 @@ struct FeedItem: Decodable {
     let sourceId: Int
     let posd: String?
     let date: Double
+    let text: String?
     let comments: CountableItem?
     let likes: CountableItem?
     let reposts: CountableItem?
+    let views: CountableItem?
 }
 
 struct CountableItem: Decodable {

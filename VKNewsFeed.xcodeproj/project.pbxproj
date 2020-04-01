@@ -28,8 +28,6 @@
 		F075CD9B22207644001CA654 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075CD9A22207644001CA654 /* AuthService.swift */; };
 		F075CD9E222086EC001CA654 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075CD9D222086EC001CA654 /* AuthViewController.swift */; };
 		F075CDA022208713001CA654 /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F075CD9F22208713001CA654 /* AuthViewController.storyboard */; };
-		F075CDA422217FF2001CA654 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075CDA322217FF1001CA654 /* FeedViewController.swift */; };
-		F075CDA622218000001CA654 /* FeedViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F075CDA522218000001CA654 /* FeedViewController.storyboard */; };
 		F075CDA822218C8E001CA654 /* UIViewController + Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075CDA722218C8E001CA654 /* UIViewController + Storyboard.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +68,6 @@
 		F075CD9A22207644001CA654 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F075CD9D222086EC001CA654 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		F075CD9F22208713001CA654 /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
-		F075CDA322217FF1001CA654 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		F075CDA522218000001CA654 /* FeedViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedViewController.storyboard; sourceTree = "<group>"; };
 		F075CDA722218C8E001CA654 /* UIViewController + Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Storyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,15 +115,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		F0640E89222D6B6E002597B1 /* FeedViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F075CDA322217FF1001CA654 /* FeedViewController.swift */,
-				F075CDA522218000001CA654 /* FeedViewController.storyboard */,
-			);
-			path = FeedViewController;
-			sourceTree = "<group>";
-		};
 		F075CD10221DBC2A001CA654 = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +138,6 @@
 				F075CD1C221DBC2A001CA654 /* AppDelegate.swift */,
 				F075CD9C22207670001CA654 /* Services */,
 				F075CDA2222088A4001CA654 /* Auth */,
-				F0640E89222D6B6E002597B1 /* FeedViewController */,
 				0C843ADB2434AFD500A87EC2 /* NewsFeed */,
 				F075CDA922218CA8001CA654 /* Helpers */,
 				F075CD23221DBC2B001CA654 /* Assets.xcassets */,
@@ -264,7 +250,6 @@
 				0C843AF02434CDCE00A87EC2 /* NewsFeedCell.xib in Resources */,
 				F075CDA022208713001CA654 /* AuthViewController.storyboard in Resources */,
 				F075CD24221DBC2B001CA654 /* Assets.xcassets in Resources */,
-				F075CDA622218000001CA654 /* FeedViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +287,6 @@
 				F075CDA822218C8E001CA654 /* UIViewController + Storyboard.swift in Sources */,
 				0C843AE82434AFFF00A87EC2 /* NewsFeedInteractor.swift in Sources */,
 				F075CD9E222086EC001CA654 /* AuthViewController.swift in Sources */,
-				F075CDA422217FF2001CA654 /* FeedViewController.swift in Sources */,
 				0C5A44022433881100FF9556 /* NetworkService.swift in Sources */,
 				0C7285EA24339E22003D12F6 /* NetworkDataFetcher.swift in Sources */,
 				0C843AE42434AFFF00A87EC2 /* NewsFeedWorker.swift in Sources */,
