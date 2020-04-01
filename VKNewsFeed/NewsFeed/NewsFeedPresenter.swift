@@ -16,7 +16,12 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
     
     // MARK: - External properties
     weak var viewController: NewsFeedDisplayLogic?
-    
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d MMMM в HH:mm"
+        return dateFormatter
+    }()
     
     // MARK: - Public properties
     func presentData(response: NewsFeed.Model.Response.ResponseType) {
@@ -24,8 +29,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         switch response {
         case .presentNewsFeed(let feed):
             
-            let feedCells = feed.items.map { feedItem in
-                cellViewModel(feedItem: feedItem)
+            let feedCells = feed.items.map { feedItem  in
+                cellViewModel(feedItem: feedItem, profiles: feed.profiles, groups: feed.groups)
             }
             
             let feedViewModel = FeedViewModel(cells: feedCells)
@@ -35,14 +40,32 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
     
     
     // MARK: - Private methods
-    private func cellViewModel(feedItem: FeedItem) -> FeedViewModel.Cell {
-        return FeedViewModel.Cell(iconUrlString: "future icon",
-                                  name: "future name",
-                                  date: "future date",
+    private func cellViewModel(feedItem: FeedItem, profiles: [Profile], groups: [Group]) -> FeedViewModel.Cell {
+        
+        let profile = self.profile(sourceId: feedItem.sourceId, profiles: profiles, groups: groups)
+        
+        let date = Date(timeIntervalSince1970: feedItem.date)
+        let dateItem = dateFormatter.string(from: date)
+        
+        return FeedViewModel.Cell(iconUrlString: profile.photo,
+                                  name: profile.name,
+                                  date: dateItem,
                                   text: feedItem.text ?? "",
                                   likes: String(feedItem.likes?.count ?? 0),
                                   commets: String(feedItem.comments?.count ?? 0),
                                   shares: String(feedItem.reposts?.count ?? 0),
                                   views: String(feedItem.views?.count ?? 0))
     }
+    
+
+    private func profile(sourceId: Int, profiles: [Profile], groups: [Group]) -> Representable {
+        
+        let profilesOrGroups: [Representable] = sourceId >= 0 ? profiles : groups
+        let realSourseId = sourceId >= 0 ? sourceId : -sourceId
+        let representable = profilesOrGroups.first { representableItem in
+            representableItem.id == realSourseId
+        }
+        return representable!
+    }
 }
+

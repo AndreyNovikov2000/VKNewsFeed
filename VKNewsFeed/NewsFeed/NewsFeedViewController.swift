@@ -78,7 +78,7 @@ extension NewsFeedViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension NewsFeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        return 212
     }
 }
 
