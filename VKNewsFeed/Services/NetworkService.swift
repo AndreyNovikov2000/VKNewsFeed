@@ -33,7 +33,7 @@ class NetworkService: Networking {
         allParams["v"] = API.version
         
         guard let url = self.url(from: path, params: allParams) else { return }
-        
+    
         let request = URLRequest(url: url)
         let task = setupDataTask(from: request, complition: complition)
         task.resume()
@@ -60,5 +60,4 @@ class NetworkService: Networking {
         return components.url
     }
 }
-
 

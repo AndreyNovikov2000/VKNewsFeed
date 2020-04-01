@@ -40,7 +40,7 @@ final class AuthService: NSObject {
     
     // MARK: - Public properties
     func wakeUpSession() {
-        let scope = ["offline"]
+        let scope = ["wall, friends"]
         
         VKSdk.wakeUpSession(scope) { [delegate] (state, error) in
             if state == VKAuthorizationState.authorized {
