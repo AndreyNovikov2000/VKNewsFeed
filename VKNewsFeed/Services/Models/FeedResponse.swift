@@ -27,6 +27,45 @@ struct FeedItem: Decodable {
     let likes: CountableItem?
     let reposts: CountableItem?
     let views: CountableItem?
+    let attachments: [Attachment]?
+}
+
+struct Attachment: Decodable {
+    let photo: Photo?
+}
+
+struct Photo: Decodable {
+    let sizes: [PhotoSize]
+    
+    
+    var width: Int {
+        getPhotoSize().width
+    }
+    
+    var height: Int {
+        getPhotoSize().height
+    }
+    
+    var imageUrl: String {
+        getPhotoSize().url
+    }
+    
+    private func getPhotoSize() -> PhotoSize  {
+        if let sizeX = sizes.first(where: { $0.type == "x" }) {
+            return sizeX
+        } else if let sizeZ = sizes.last(where: { $0.type == "y" }) {
+            return sizeZ
+        } else {
+            return PhotoSize(type: "wrong image", url: "wrong image", width: 0, height: 0)
+        }
+    }
+}
+
+struct PhotoSize: Decodable {
+    let type: String
+    let url: String
+    let width: Int
+    let height: Int
 }
 
 struct CountableItem: Decodable {
