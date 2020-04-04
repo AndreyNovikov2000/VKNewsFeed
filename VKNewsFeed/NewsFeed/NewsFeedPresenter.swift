@@ -16,6 +16,11 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
     
     // MARK: - External properties
     weak var viewController: NewsFeedDisplayLogic?
+    
+    // MARK: - Public properties
+    
+    let layoutCalculator: FeedCellLayoutCalculatorProtocol = FeedCelllayoutCalculator()
+    
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
@@ -49,6 +54,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         
         let photoAttachment = self.photoAttachment(feedItem: feedItem)
         
+        let sizes = layoutCalculator.sizes(postText: feedItem.text, photoAttachment: photoAttachment)
+        
         return FeedViewModel.Cell(iconUrlString: profile.photo,
                                   name: profile.name,
                                   date: dateItem,
@@ -57,7 +64,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
                                   commets: String(feedItem.comments?.count ?? 0),
                                   shares: String(feedItem.reposts?.count ?? 0),
                                   views: String(feedItem.views?.count ?? 0),
-                                  photoAttachment: photoAttachment)
+                                  photoAttachment: photoAttachment,
+                                  sizes: sizes)
     }
     
     

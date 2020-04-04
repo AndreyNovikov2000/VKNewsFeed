@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1E78E32438FD380086B2C9 /* NewsFeedLayoutCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E78E22438FD380086B2C9 /* NewsFeedLayoutCalculator.swift */; };
 		0C5A43FD243382F700FF9556 /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F075CD2F221DD90A001CA654 /* VKSdkFramework.framework */; };
 		0C5A43FE243382F700FF9556 /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F075CD2F221DD90A001CA654 /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C5A44022433881100FF9556 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5A44012433881100FF9556 /* NetworkService.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C1E78E22438FD380086B2C9 /* NewsFeedLayoutCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedLayoutCalculator.swift; sourceTree = "<group>"; };
 		0C5A44012433881100FF9556 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0C5A44032433889C00FF9556 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0C7285E724339AB0003D12F6 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		0C843AEC2434CD7200A87EC2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0C1E78E22438FD380086B2C9 /* NewsFeedLayoutCalculator.swift */,
 				0C843AED2434CD9800A87EC2 /* NewsFeedCell.swift */,
 				0C843AEF2434CDCE00A87EC2 /* NewsFeedCell.xib */,
 			);
@@ -293,6 +296,7 @@
 				0C5A44022433881100FF9556 /* NetworkService.swift in Sources */,
 				0C7285EA24339E22003D12F6 /* NetworkDataFetcher.swift in Sources */,
 				0C843AE42434AFFF00A87EC2 /* NewsFeedWorker.swift in Sources */,
+				0C1E78E32438FD380086B2C9 /* NewsFeedLayoutCalculator.swift in Sources */,
 				0C843AF22436064600A87EC2 /* WebImageView.swift in Sources */,
 				0C843AE52434AFFF00A87EC2 /* NewsFeedRouter.swift in Sources */,
 				F075CD1D221DBC2A001CA654 /* AppDelegate.swift in Sources */,
