@@ -24,6 +24,7 @@
 		0C843AEE2434CD9800A87EC2 /* NewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C843AED2434CD9800A87EC2 /* NewsFeedCell.swift */; };
 		0C843AF02434CDCE00A87EC2 /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C843AEF2434CDCE00A87EC2 /* NewsFeedCell.xib */; };
 		0C843AF22436064600A87EC2 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C843AF12436064600A87EC2 /* WebImageView.swift */; };
+		0CD94DF82439154F00293A00 /* String + Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD94DF72439154F00293A00 /* String + Height.swift */; };
 		F075CD1D221DBC2A001CA654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075CD1C221DBC2A001CA654 /* AppDelegate.swift */; };
 		F075CD24221DBC2B001CA654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F075CD23221DBC2B001CA654 /* Assets.xcassets */; };
 		F075CD27221DBC2B001CA654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F075CD25221DBC2B001CA654 /* LaunchScreen.storyboard */; };
@@ -63,6 +64,7 @@
 		0C843AED2434CD9800A87EC2 /* NewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCell.swift; sourceTree = "<group>"; };
 		0C843AEF2434CDCE00A87EC2 /* NewsFeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		0C843AF12436064600A87EC2 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		0CD94DF72439154F00293A00 /* String + Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Height.swift"; sourceTree = "<group>"; };
 		F075CD19221DBC2A001CA654 /* VKNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F075CD1C221DBC2A001CA654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F075CD23221DBC2B001CA654 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				0C843AF12436064600A87EC2 /* WebImageView.swift */,
 				F075CDA722218C8E001CA654 /* UIViewController + Storyboard.swift */,
+				0CD94DF72439154F00293A00 /* String + Height.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C7285E824339AB0003D12F6 /* FeedResponse.swift in Sources */,
+				0CD94DF82439154F00293A00 /* String + Height.swift in Sources */,
 				0C843AE32434AFFF00A87EC2 /* NewsFeedPresenter.swift in Sources */,
 				F075CD9B22207644001CA654 /* AuthService.swift in Sources */,
 				F075CDA822218C8E001CA654 /* UIViewController + Storyboard.swift in Sources */,

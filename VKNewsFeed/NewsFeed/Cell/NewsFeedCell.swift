@@ -30,6 +30,8 @@ protocol FeedCellPhotoAttachmentViewModel {
 protocol FeedCellSizes {
     var postLabelFrame: CGRect { get }
     var attachmentFrame: CGRect { get }
+    var bottomView: CGRect { get }
+    var totalHieght: CGFloat { get }
 }
 
 
@@ -39,6 +41,7 @@ class NewsFeedCell: UITableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var iconImageView: WebImageView!
     @IBOutlet weak var postImageView: WebImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -61,6 +64,8 @@ class NewsFeedCell: UITableViewCell {
     
     // MARK: - Public methods
     func set(viewModel: FeedCellViewModel) {
+        
+        // MARK: - Cell
         iconImageView.set(imageUrl: viewModel.iconUrlString)
         nameLabel.text = viewModel.name
         dateLabel.text = viewModel.date
@@ -70,8 +75,10 @@ class NewsFeedCell: UITableViewCell {
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
         
+        // MARK: - Frames
         postLabel.frame = viewModel.sizes.postLabelFrame
         postImageView.frame = viewModel.sizes.attachmentFrame
+        bottomView.frame = viewModel.sizes.bottomView
         
         if let photoAttachment = viewModel.photoAttachment {
             postImageView.set(imageUrl: photoAttachment.postUrlString)

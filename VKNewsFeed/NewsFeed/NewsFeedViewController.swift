@@ -80,7 +80,9 @@ extension NewsFeedViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension NewsFeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 212
+        let totalHieght = feedViewModel.cells[indexPath.row].sizes.totalHieght
+        
+        return totalHieght
     }
 }
 
