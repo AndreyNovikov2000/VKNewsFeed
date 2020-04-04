@@ -13,8 +13,6 @@ extension String {
     func height(labelWidth: CGFloat, font: UIFont) -> CGFloat {
         let labelSize = CGSize(width: labelWidth, height: .greatestFiniteMagnitude)
         
-        print(labelSize.height)
-        
         let size = self.boundingRect(with: labelSize,
                                      options: .usesLineFragmentOrigin,
                                      attributes: [NSAttributedString.Key.font : font],

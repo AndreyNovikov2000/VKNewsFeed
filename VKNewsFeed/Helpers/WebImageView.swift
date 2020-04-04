@@ -11,7 +11,10 @@ import UIKit
 class WebImageView: UIImageView {
     
     func set(imageUrl: String?) {
-        guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else { return }
+        guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else {
+            self.image = nil
+            return
+        }
         
         if let caceResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
             image = UIImage(data: caceResponse.data)
