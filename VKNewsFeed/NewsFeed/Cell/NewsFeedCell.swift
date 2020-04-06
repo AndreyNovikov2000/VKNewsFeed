@@ -73,7 +73,7 @@ class NewsFeedCell: UITableViewCell {
     // MARK: - Public methods
     func set(viewModel: FeedCellViewModel) {
         
-        // MARK: - Cell
+        // Cell
         iconImageView.set(imageUrl: viewModel.iconUrlString)
         nameLabel.text = viewModel.name
         dateLabel.text = viewModel.date
@@ -83,12 +83,12 @@ class NewsFeedCell: UITableViewCell {
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
         
-        // MARK: - Frames
+        // Frames
         postLabel.frame = viewModel.sizes.postLabelFrame
         postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomviewFrame
         
-        // MARK: - Attachment
+        // Attachment
         if let photoAttachment = viewModel.photoAttachment {
             postImageView.set(imageUrl: photoAttachment.postUrlString)
             postImageView.isHidden = false
