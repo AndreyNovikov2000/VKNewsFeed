@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol NewsFeedCodeCellDelegate: class {
+    func revealCell(for cell: NewsFeedCodeCell)
+}
+
 final class NewsFeedCodeCell: UITableViewCell {
     
     static let reuseId = "NewsFeedCodeCell"
+    
+    // MARK: External properties
+    weak var cellDelegate: NewsFeedCodeCellDelegate?
     
     // MARK: - First layer
     let cardView: UIView = {
@@ -39,6 +46,16 @@ final class NewsFeedCodeCell: UITableViewCell {
         let imageView = WebImageView()
         imageView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return imageView
+    }()
+    
+    let moreTextButtom: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        button.setTitleColor(#colorLiteral(red: 0.3490949869, green: 0.442735225, blue: 1, alpha: 1), for: .normal)
+        button.setTitle("Show more...", for: .normal)
+        button.contentHorizontalAlignment = .leading
+        button.contentVerticalAlignment = .center
+        return button
     }()
     
     let bottomView: UIView = {
@@ -179,6 +196,8 @@ final class NewsFeedCodeCell: UITableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
         
+        moreTextButtom.addTarget(self, action: #selector(handleMoreTextButtonTapped), for: .touchUpInside)
+        
         overlayFirstLayer()
         overlaySecondLayer()
         overlayThridLayerOnTopView()
@@ -209,6 +228,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         postLabel.frame = viewModel.sizes.postLabelFrame
         postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomviewFrame
+        moreTextButtom.frame = viewModel.sizes.moreTextButtonFrame
         
         // Attachment
         if let photoAttachment = viewModel.photoAttachment {
@@ -217,6 +237,11 @@ final class NewsFeedCodeCell: UITableViewCell {
         } else {
             postImageView.isHidden = true
         }
+    }
+    
+    // MARK: - Objc methods
+    @objc func handleMoreTextButtonTapped() {
+        cellDelegate?.revealCell(for: self)
     }
     
     // MARK: - Constraints
@@ -239,6 +264,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         cardView.addSubview(topView)
         cardView.addSubview(postLabel)
         cardView.addSubview(postImageView)
+        cardView.addSubview(moreTextButtom)
         cardView.addSubview(bottomView)
         
         // top view
@@ -248,7 +274,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         topView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 8).isActive = true
         topView.heightAnchor.constraint(equalToConstant: Constants.topViewHieght).isActive = true
         
-        // post label, postImageView, bottomView  - dynamic items
+        // post label, postImageView, bottomView, moreTextButtom  - dynamic items
     }
     
     // MARK: - THRID LAYER ON TOP VIEW

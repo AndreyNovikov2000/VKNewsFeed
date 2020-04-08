@@ -45,12 +45,12 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        //table.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
-        table.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
-        
         interactor?.makeRequest(request: .getFeed)
+        
+        table.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
         table.separatorStyle = .none
         table.backgroundColor = .clear
+        
     }
     
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
@@ -73,11 +73,13 @@ extension NewsFeedViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsFeedCodeCell.reuseId, for: indexPath) as! NewsFeedCodeCell
         let viewModel = feedViewModel.cells[indexPath.row]
         
+        cell.cellDelegate = self
         cell.set(viewModel: viewModel)
         
         return cell
     }
 }
+
 
 // MARK: - UITableViewDelegate
 extension NewsFeedViewController: UITableViewDelegate {
@@ -89,3 +91,9 @@ extension NewsFeedViewController: UITableViewDelegate {
 }
 
 
+// MARK: - NewsFeedCodeCellDelegate
+extension NewsFeedViewController: NewsFeedCodeCellDelegate {
+    func revealCell(for cell: NewsFeedCodeCell) {
+        print(cell)
+    }
+}

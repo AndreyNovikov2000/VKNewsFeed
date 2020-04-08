@@ -31,6 +31,7 @@ protocol FeedCellSizes {
     var postLabelFrame: CGRect { get }
     var attachmentFrame: CGRect { get }
     var bottomviewFrame: CGRect { get }
+    var moreTextButtonFrame: CGRect { get }
     var totalHieght: CGFloat { get }
 }
 

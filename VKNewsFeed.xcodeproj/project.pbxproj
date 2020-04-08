@@ -93,6 +93,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C49D43E243CBD23000E23B2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				0C7285E924339E22003D12F6 /* NetworkDataFetcher.swift */,
+				0C5A44012433881100FF9556 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		0C49D43F243CBD3C000E23B2 /* AuthVK */ = {
+			isa = PBXGroup;
+			children = (
+				F075CD9A22207644001CA654 /* AuthService.swift */,
+			);
+			path = AuthVK;
+			sourceTree = "<group>";
+		};
+		0C49D440243CBD46000E23B2 /* Constants + API */ = {
+			isa = PBXGroup;
+			children = (
+				0CC9B82B243B65E300BE4CA7 /* Constants.swift */,
+				0C5A44032433889C00FF9556 /* API.swift */,
+			);
+			path = "Constants + API";
+			sourceTree = "<group>";
+		};
 		0C7285E624339A99003D12F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				0C1E78E22438FD380086B2C9 /* NewsFeedLayoutCalculator.swift */,
-				0CC9B82B243B65E300BE4CA7 /* Constants.swift */,
 				0CB6936C243A824F00589D72 /* NewsFeedCodeCell.swift */,
 				0C843AED2434CD9800A87EC2 /* NewsFeedCell.swift */,
 				0C843AEF2434CDCE00A87EC2 /* NewsFeedCell.xib */,
@@ -172,10 +197,9 @@
 			isa = PBXGroup;
 			children = (
 				0C7285E624339A99003D12F6 /* Models */,
-				F075CD9A22207644001CA654 /* AuthService.swift */,
-				0C7285E924339E22003D12F6 /* NetworkDataFetcher.swift */,
-				0C5A44012433881100FF9556 /* NetworkService.swift */,
-				0C5A44032433889C00FF9556 /* API.swift */,
+				0C49D43F243CBD3C000E23B2 /* AuthVK */,
+				0C49D43E243CBD23000E23B2 /* Networking */,
+				0C49D440243CBD46000E23B2 /* Constants + API */,
 			);
 			path = Services;
 			sourceTree = "<group>";
