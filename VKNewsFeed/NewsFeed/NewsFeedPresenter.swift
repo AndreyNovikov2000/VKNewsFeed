@@ -32,10 +32,12 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
     func presentData(response: NewsFeed.Model.Response.ResponseType) {
         
         switch response {
-        case .presentNewsFeed(let feed):
+        case .presentNewsFeed(let feed, let revealedPostIds):
+            
+            print(revealedPostIds)
             
             let feedCells = feed.items.map { feedItem  in
-                cellViewModel(feedItem: feedItem, profiles: feed.profiles, groups: feed.groups)
+                cellViewModel(feedItem: feedItem, profiles: feed.profiles, groups: feed.groups, revealedPostIds: revealedPostIds)
             }
             
             let feedViewModel = FeedViewModel(cells: feedCells)
@@ -45,7 +47,7 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
     
     
     // MARK: - Private methods
-    private func cellViewModel(feedItem: FeedItem, profiles: [Profile], groups: [Group]) -> FeedViewModel.Cell {
+    private func cellViewModel(feedItem: FeedItem, profiles: [Profile], groups: [Group], revealedPostIds: [Int]) -> FeedViewModel.Cell {
         
         let profile = self.profile(sourceId: feedItem.sourceId, profiles: profiles, groups: groups)
         
@@ -54,9 +56,13 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         
         let photoAttachment = self.photoAttachment(feedItem: feedItem)
         
-        let sizes = layoutCalculator.sizes(postText: feedItem.text, photoAttachment: photoAttachment)
+        let isFullSized = revealedPostIds.contains { $0 == feedItem.postId }
         
-        return FeedViewModel.Cell(iconUrlString: profile.photo,
+        let sizes = layoutCalculator.sizes(postText: feedItem.text, photoAttachment: photoAttachment, isFullSized: isFullSized)
+        
+        
+        return FeedViewModel.Cell(postId: feedItem.postId,
+                                  iconUrlString: profile.photo,
                                   name: profile.name,
                                   date: dateItem,
                                   text: feedItem.text ?? "",

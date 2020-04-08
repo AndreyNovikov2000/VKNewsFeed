@@ -85,8 +85,13 @@ extension NewsFeedViewController: UITableViewDataSource {
 extension NewsFeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let totalHieght = feedViewModel.cells[indexPath.row].sizes.totalHieght
-        
         return totalHieght
+    }
+    
+    // We have dynamic cells -> should use estimated height
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let totalHeight = feedViewModel.cells[indexPath.row].sizes.totalHieght
+        return totalHeight
     }
 }
 
@@ -94,6 +99,8 @@ extension NewsFeedViewController: UITableViewDelegate {
 // MARK: - NewsFeedCodeCellDelegate
 extension NewsFeedViewController: NewsFeedCodeCellDelegate {
     func revealCell(for cell: NewsFeedCodeCell) {
-        print(cell)
+        guard let indexPath = table.indexPath(for: cell) else { return }
+        let viewModel = feedViewModel.cells[indexPath.row]
+        interactor?.makeRequest(request: .revealWithPostIDs(id: viewModel.postId))
     }
 }
