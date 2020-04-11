@@ -19,7 +19,7 @@ struct FeedSizes: FeedCellSizes {
 
 
 protocol FeedCellLayoutCalculatorProtocol {
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSized: Bool) -> FeedCellSizes
+    func sizes(postText: String?, photoAttachments: [FeedCellPhotoAttachmentViewModel], isFullSized: Bool) -> FeedCellSizes
 }
 
 final class FeedCelllayoutCalculator: FeedCellLayoutCalculatorProtocol {
@@ -35,7 +35,7 @@ final class FeedCelllayoutCalculator: FeedCellLayoutCalculatorProtocol {
     
     // MARK: - FeedCellLayoutCalculatorProtocol
     
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSized: Bool) -> FeedCellSizes {
+    func sizes(postText: String?, photoAttachments: [FeedCellPhotoAttachmentViewModel], isFullSized: Bool) -> FeedCellSizes {
         
         var showMoreTextButton = false
         
@@ -83,13 +83,20 @@ final class FeedCelllayoutCalculator: FeedCellLayoutCalculatorProtocol {
         var attachmentFrame = CGRect(origin: CGPoint(x: 0,y: attachmentOriginY),
                                      size: CGSize.zero)
         
-        if let attachment = photoAttachment {
+        
+        if let attachment = photoAttachments.first {
             let ratio = CGFloat(attachment.hieght) / CGFloat(attachment.width)
             let height = cardViewWidth * ratio
             
-            let attachmentSize = CGSize(width: cardViewWidth, height: height)
-            attachmentFrame.size = attachmentSize
+            if photoAttachments.count == 1 {
+                let attachmentSize = CGSize(width: cardViewWidth, height: height)
+                attachmentFrame.size = attachmentSize
+            } else if photoAttachments.count > 1 {
+                let attachmentSize = CGSize(width: cardViewWidth, height: height)
+                attachmentFrame.size = attachmentSize
+            }
         }
+        
         
         // MARK: - Work with bottom frame
         let bottomViewOriginY = max(postLabelFrame.maxY, attachmentFrame.maxY)

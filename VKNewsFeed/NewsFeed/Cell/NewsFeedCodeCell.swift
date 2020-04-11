@@ -48,6 +48,8 @@ final class NewsFeedCodeCell: UITableViewCell {
         return imageView
     }()
     
+    let galleryCollectionView = GalleryCollectionView()
+    
     let moreTextButtom: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
@@ -226,16 +228,28 @@ final class NewsFeedCodeCell: UITableViewCell {
         
         // Frames
         postLabel.frame = viewModel.sizes.postLabelFrame
-        postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomviewFrame
         moreTextButtom.frame = viewModel.sizes.moreTextButtonFrame
         
-        // Attachment
-        if let photoAttachment = viewModel.photoAttachment {
+        // Attachments
+        if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1 {
+            
             postImageView.set(imageUrl: photoAttachment.postUrlString)
+            postImageView.frame = viewModel.sizes.attachmentFrame
+            
             postImageView.isHidden = false
-        } else {
+            galleryCollectionView.isHidden = true
+        } else if viewModel.photoAttachments.count > 1 {
+            
+            galleryCollectionView.set(photos: viewModel.photoAttachments)
+            galleryCollectionView.frame = viewModel.sizes.attachmentFrame
+            
             postImageView.isHidden = true
+            galleryCollectionView.isHidden = false
+        } else {
+            
+            postImageView.isHidden = true
+            galleryCollectionView.isHidden = true
         }
     }
     
@@ -264,6 +278,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         cardView.addSubview(topView)
         cardView.addSubview(postLabel)
         cardView.addSubview(postImageView)
+        cardView.addSubview(galleryCollectionView)
         cardView.addSubview(moreTextButtom)
         cardView.addSubview(bottomView)
         
@@ -274,7 +289,11 @@ final class NewsFeedCodeCell: UITableViewCell {
         topView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 8).isActive = true
         topView.heightAnchor.constraint(equalToConstant: Constants.topViewHieght).isActive = true
         
-        // post label, postImageView, bottomView, moreTextButtom  - dynamic items
+        // post label - dynamic items
+        // postImageView - dynamic items
+        // galleryCollectionView - dynamic items
+        // bottomVie - dynamic items
+        // moreTextButtom - dynamic items
     }
     
     // MARK: - THRID LAYER ON TOP VIEW

@@ -17,7 +17,7 @@ protocol FeedCellViewModel {
     var commets: String? { get }
     var shares: String? { get }
     var views: String? { get }
-    var photoAttachment: FeedCellPhotoAttachmentViewModel? { get }
+    var photoAttachments: [FeedCellPhotoAttachmentViewModel] { get }
     var sizes: FeedCellSizes { get }
 }
 
@@ -36,6 +36,7 @@ protocol FeedCellSizes {
 }
 
 
+/*
 class NewsFeedCell: UITableViewCell {
     
     static let reuseId = "NewsFeedCell"
@@ -98,3 +99,4 @@ class NewsFeedCell: UITableViewCell {
         }
     }
 }
+*/
