@@ -92,8 +92,18 @@ final class FeedCelllayoutCalculator: FeedCellLayoutCalculatorProtocol {
                 let attachmentSize = CGSize(width: cardViewWidth, height: height)
                 attachmentFrame.size = attachmentSize
             } else if photoAttachments.count > 1 {
-                let attachmentSize = CGSize(width: cardViewWidth, height: height)
-                attachmentFrame.size = attachmentSize
+//                let attachmentSize = CGSize(width: cardViewWidth, height: height)
+//                attachmentFrame.size = attachmentSize
+                
+                var photos = [CGSize]()
+                for photo in photoAttachments {
+                    let photoSize = CGSize(width: photo.width, height: photo.hieght)
+                    photos.append(photoSize)
+                }
+                
+                let height = RowLayout.rowHeightCounter(superViewWidth: cardViewWidth, photosArray: photos)
+                attachmentFrame.size = CGSize(width: cardViewWidth, height: height!)
+                
             }
         }
         
