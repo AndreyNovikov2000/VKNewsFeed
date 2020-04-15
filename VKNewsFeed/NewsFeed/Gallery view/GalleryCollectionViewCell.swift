@@ -37,7 +37,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         photoImageView.image = nil
     }
     
-    //
+    // MARK: - Public methods
     func set(imageUrl: String?) {
         photoImageView.set(imageUrl: imageUrl)
     }
