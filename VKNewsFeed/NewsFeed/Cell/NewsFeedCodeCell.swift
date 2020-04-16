@@ -120,28 +120,28 @@ final class NewsFeedCodeCell: UITableViewCell {
     // MARK: - Fourth layer on botton view
     let likesImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "like1")
+        imageView.image = UIImage(named: "like")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let commetsImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "comment1")
+        imageView.image = UIImage(named: "comment")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let sharesImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "share1")
+        imageView.image = UIImage(named: "share")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let viewsImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "eye1")
+        imageView.image = UIImage(named: "eye")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

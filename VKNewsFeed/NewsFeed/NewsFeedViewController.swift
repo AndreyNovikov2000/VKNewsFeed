@@ -18,6 +18,7 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     var router: (NSObjectProtocol & NewsFeedRoutingLogic)?
     
     private var feedViewModel = FeedViewModel(cells: [])
+    private let titleView = TitleView()
     
     @IBOutlet weak var table: UITableView!
     
@@ -46,11 +47,13 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         super.viewDidLoad()
         setup()
         interactor?.makeRequest(request: .getFeed)
+        interactor?.makeRequest(request: .getUser)
         
         table.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
         table.separatorStyle = .none
         table.backgroundColor = .clear
         
+        setupTopBar()
     }
     
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
@@ -58,7 +61,17 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         case .displayNewsFeed(let feedViewModel):
             self.feedViewModel = feedViewModel
             table.reloadData()
+            
+        case .displayUser(userViewModel: let userViewModel):
+            titleView.set(viewModel: userViewModel)
         }
+    }
+    
+    
+    // MARK: - Private properties
+    private func setupTopBar() {
+        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationItem.titleView = titleView
     }
 }
 
