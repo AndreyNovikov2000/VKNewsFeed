@@ -17,10 +17,16 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     var interactor: NewsFeedBusinessLogic?
     var router: (NSObjectProtocol & NewsFeedRoutingLogic)?
     
+    @IBOutlet weak var table: UITableView!
+    
+    private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(heandleRefreshControl), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private var feedViewModel = FeedViewModel(cells: [])
     private let titleView = TitleView()
-    
-    @IBOutlet weak var table: UITableView!
     
     
     // MARK: Setup
@@ -46,31 +52,44 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        setupTable()
+        setupTopBar()
+        
         interactor?.makeRequest(request: .getFeed)
         interactor?.makeRequest(request: .getUser)
-        
-        table.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
-        table.separatorStyle = .none
-        table.backgroundColor = .clear
-        
-        setupTopBar()
     }
+    
     
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayNewsFeed(let feedViewModel):
             self.feedViewModel = feedViewModel
             table.reloadData()
-            
+            refreshControl.endRefreshing()
         case .displayUser(userViewModel: let userViewModel):
             titleView.set(viewModel: userViewModel)
         }
     }
     
     
+    // MARK: - Objc methods
+    @objc private func heandleRefreshControl() {
+        interactor?.makeRequest(request: .getFeed)
+    }
+    
     // MARK: - Private properties
+    
+    private func setupTable() {
+        table.contentInset.top = 8
+        table.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
+        table.separatorStyle = .none
+        table.backgroundColor = .clear
+        table.addSubview(refreshControl)
+    }
+    
     private func setupTopBar() {
-        self.navigationController?.hidesBarsOnSwipe = true
+//        self.navigationController?.hidesBarsOnSwipe = true
         self.navigationItem.titleView = titleView
     }
 }

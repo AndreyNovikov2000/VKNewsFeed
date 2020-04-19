@@ -64,18 +64,34 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         
         let sizes = layoutCalculator.sizes(postText: feedItem.text, photoAttachments: photoAttachments, isFullSized: isFullSized)
         
+        let postText = feedItem.text?.replacingOccurrences(of: "<br>", with: "\n")
         
         return FeedViewModel.Cell(postId: feedItem.postId,
                                   iconUrlString: profile.photo,
                                   name: profile.name,
                                   date: dateItem,
-                                  text: feedItem.text ?? "",
-                                  likes: String(feedItem.likes?.count ?? 0),
-                                  commets: String(feedItem.comments?.count ?? 0),
-                                  shares: String(feedItem.reposts?.count ?? 0),
-                                  views: String(feedItem.views?.count ?? 0),
+                                  text: postText ?? "",
+                                  likes: formatedCounter(feedItem.likes?.count),
+                                  commets: formatedCounter(feedItem.comments?.count),
+                                  shares: formatedCounter(feedItem.reposts?.count),
+                                  views: formatedCounter(feedItem.views?.count),
                                   photoAttachments: photoAttachments,
                                   sizes: sizes)
+    }
+    
+    private func formatedCounter(_ counter: Int?) -> String? {
+        guard let counter = counter else { return nil }
+        var counterString = String(counter)
+        
+        if counterString.count >= 4 && counterString.count < 6 {
+            counterString = String(counterString.dropLast(3)) + "K"
+        } else if counterString.count > 6 && counterString.count < 9 {
+            counterString = String(counterString.dropLast(6)) + "M"
+        } else if counterString.count > 9 {
+            counterString = String(counterString.dropLast(9)) + "B"
+        }
+        
+        return counterString
     }
     
     

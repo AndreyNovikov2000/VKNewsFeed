@@ -48,7 +48,7 @@ final class FeedCelllayoutCalculator: FeedCellLayoutCalculatorProtocol {
         
         if let text = postText, !text.isEmpty {
             let width = cardViewWidth - Constants.postLabelInsets.left - Constants.postLabelInsets.right
-            var height = text.height(labelWidth: width, font: Constants.postLabelFont)
+            var height = text.height(labelWidth: width, font: Constants.postLabelFont) + 7
             
             
             

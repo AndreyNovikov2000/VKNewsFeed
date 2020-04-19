@@ -34,12 +34,20 @@ final class NewsFeedCodeCell: UITableViewCell {
         topView.translatesAutoresizingMaskIntoConstraints = false
         return topView
     }()
-    
-    let postLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = Constants.postLabelFont
-        return label
+      
+    let postLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = Constants.postLabelFont
+        textView.isScrollEnabled = false
+        textView.isSelectable = true
+        textView.isUserInteractionEnabled = true
+        textView.isEditable = false
+        
+        
+        let padding = textView.textContainer.lineFragmentPadding
+        textView.contentInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        textView.dataDetectorTypes = UIDataDetectorTypes.all
+        return textView
     }()
     
     let postImageView: WebImageView = {
@@ -228,8 +236,10 @@ final class NewsFeedCodeCell: UITableViewCell {
         
         // Frames
         postLabel.frame = viewModel.sizes.postLabelFrame
+        
         bottomView.frame = viewModel.sizes.bottomviewFrame
         moreTextButtom.frame = viewModel.sizes.moreTextButtonFrame
+        
         
         // Attachments
         if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1 {

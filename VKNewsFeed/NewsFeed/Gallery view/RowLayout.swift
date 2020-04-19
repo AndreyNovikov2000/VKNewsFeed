@@ -16,7 +16,7 @@ class RowLayout: UICollectionViewLayout {
     
     // MARK: - External properties
     weak var delegate: RowLayoutDelegate!
-    static var numberOfRows = 2
+    static var numberOfRows = 1
     
     // MARK: Private properties
     private var cellPadding: CGFloat = 8
