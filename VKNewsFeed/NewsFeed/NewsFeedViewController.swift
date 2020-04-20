@@ -25,8 +25,11 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         return refreshControl
     }()
     
-    private var feedViewModel = FeedViewModel(cells: [])
+    private var feedViewModel = FeedViewModel(cells: [], footerTirle: nil)
+    
     private let titleView = TitleView()
+    lazy private var footerView = FooterView()
+    
     
     
     // MARK: Setup
@@ -64,11 +67,18 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayNewsFeed(let feedViewModel):
+            
             self.feedViewModel = feedViewModel
             table.reloadData()
             refreshControl.endRefreshing()
+            footerView.setTitle(feedViewModel.footerTirle)
+            
         case .displayUser(userViewModel: let userViewModel):
+            
             titleView.set(viewModel: userViewModel)
+            
+        case .displayFoterLoader:
+            footerView.showLoader()
         }
     }
     
@@ -80,9 +90,11 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     
     
     // MARK: - Objc methods
+    
     @objc private func heandleRefreshControl() {
         interactor?.makeRequest(request: .getFeed)
     }
+    
     
     // MARK: - Private properties
     
@@ -92,6 +104,8 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         table.separatorStyle = .none
         table.backgroundColor = .clear
         table.addSubview(refreshControl)
+        table.tableFooterView = footerView
+        
     }
     
     private func setupTopBar() {

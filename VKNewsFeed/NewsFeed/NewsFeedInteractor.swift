@@ -41,7 +41,10 @@ class NewsFeedInteractor: NewsFeedBusinessLogic {
             service?.revealedPostIds(postId: id, complition: { [weak self] (revealedPostIds, feed) in
                 self?.presenter?.presentData(response: .presentNewsFeed(feed: feed, revealedPostIds: revealedPostIds))
             })
+            
         case .getNextBatch:
+            
+            presenter?.presentData(response: .presentFooterLoader)
             service?.getNextBatch(complition: { [weak self] (revealedPostIds, feed) in
                 self?.presenter?.presentData(response: .presentNewsFeed(feed: feed, revealedPostIds: revealedPostIds))
             })
