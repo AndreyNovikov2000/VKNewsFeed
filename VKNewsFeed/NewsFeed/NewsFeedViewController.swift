@@ -72,6 +72,12 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         }
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height / 1.1 {
+            interactor?.makeRequest(request: .getNextBatch)
+        }
+    }
+    
     
     // MARK: - Objc methods
     @objc private func heandleRefreshControl() {
@@ -89,7 +95,6 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
     }
     
     private func setupTopBar() {
-//        self.navigationController?.hidesBarsOnSwipe = true
         self.navigationItem.titleView = titleView
     }
 }

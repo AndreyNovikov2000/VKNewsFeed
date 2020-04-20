@@ -37,6 +37,8 @@ class NetworkService: Networking {
         let request = URLRequest(url: url)
         let task = setupDataTask(from: request, complition: complition)
         task.resume()
+        
+
     }
     
     
@@ -56,7 +58,7 @@ class NetworkService: Networking {
         components.host = API.host
         components.path = path
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
-        
+
         return components.url
     }
 }
