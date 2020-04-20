@@ -105,11 +105,24 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         table.backgroundColor = .clear
         table.addSubview(refreshControl)
         table.tableFooterView = footerView
-        
     }
     
     private func setupTopBar() {
-        self.navigationItem.titleView = titleView
+        let topBar = UIView(frame: UIApplication.shared.statusBarFrame)
+        
+        topBar.backgroundColor = .white
+        topBar.layer.shadowColor = UIColor.black.cgColor
+        topBar.layer.shadowOpacity = 0.3
+        topBar.layer.shadowRadius = 0.8
+        topBar.layer.shadowOffset = CGSize.zero
+        self.view.addSubview(topBar)
+        
+
+        
+        
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationItem.titleView = titleView
     }
 }
 
